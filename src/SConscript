@@ -19,5 +19,7 @@ env.appendSourcePath("#include/")
 # for the future
 if env.compiler != 2:
     env.Append(LINKFLAGS=["-rdynamic"])
+    # Explicitly linking dl might be required?
+    env.withLibraries("dl")
 
 env.Program("nova", sources)
