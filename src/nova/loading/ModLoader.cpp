@@ -20,9 +20,7 @@ typedef void(
 
 ModLoader::~ModLoader() {
     for (auto& ptr : libs) {
-#ifdef _WIN32
-        FreeLibrary(ptr);
-#else
+#ifndef _WIN32
         dlclose(ptr);
 #endif
     }
