@@ -23,3 +23,17 @@ Tiny possible recursive trap aside, to implement modules by using the Nova API, 
 **Note:** While only SCons is supported at the moment, pull requests adding submodule equivalents for other buildscripts are welcome. Note that buildscript files for building Nova itself are going to continue using SCons, because there's no point in fracturing the primary build system. Module interfaces need to support lots of options, but the options for building Nova itself shouldn't.
 
 TODO: determine whether or not several modules potentially linking against Conan dependencies causes problems. (Disregard Windows frameworks, MSVC users should figure that out on their own.)
+
+## Making extensions
+
+Nova extensions are primarily based on `Module`s. You create your own classes extending `Module`, and register it in the `ModuleTree`.
+
+### `NovaMain()`
+
+`NovaMain()` is a special function for dynamic libraries. This function is kinda the entry point to your dynamic library, The motivation behind this is that only Windows has DllMain (see [this](https://stackoverflow.com/a/12463991/6296561)), so for true portability, Nova calls a custom function to make sure everything is intialized.
+
+Due to dynamic library mechanics, this is the easiest way to initialize everything.
+
+### `ModuleTree` and registering extensions
+
+Just having stuff added to a dynamic library isn't enough

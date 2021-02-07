@@ -1,4 +1,4 @@
-#include "InputProcessor.hpp"
+#include "nova/input/InputProcessor.hpp"
 
 namespace nova {
 

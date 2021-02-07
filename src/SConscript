@@ -4,8 +4,20 @@ sources = []
 sources += env.Glob("nova/*.cpp")
 sources += env.Glob("nova/driver/*.cpp")
 sources += env.Glob("nova/input/*.cpp")
+sources += env.Glob("nova/loading/*.cpp")
+
+sources += env.Glob("nova/modules/*.cpp")
+sources += env.Glob("nova/modules/builtins/*.cpp")
 
 env.appendSourcePath("#TermUtils/include/")
 env.appendSourcePath("#src/")
 env.appendSourcePath("#include/")
+
+# env.compiler == 2 => MSVC or MSVC-compatible.
+# We shouldn't need -rdynamic for these.
+# clang-cl _might_ be an exception, but that's a problem
+# for the future
+if env.compiler != 2:
+    env.Append(LINKFLAGS=["-rdynamic"])
+
 env.Program("nova", sources)

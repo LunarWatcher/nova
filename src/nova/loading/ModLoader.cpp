@@ -1,0 +1,55 @@
+#include "nova/loading/ModLoader.hpp"
+#include <iostream>
+#include <memory>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <dlfcn.h>
+#endif
+
+#include <stdio.h>
+
+namespace nova {
+
+typedef void (*novamain_t)();
+
+ModLoader::~ModLoader() {
+    for (auto& ptr : libs) {
+#ifdef _WIN32
+
+#else
+        dlclose(ptr);
+#endif
+    }
+}
+
+void ModLoader::loadDynamicLibrary(const std::string& path) {
+#ifdef _WIN32
+
+#else
+    void* dhl = dlopen(path.c_str(), RTLD_LAZY);
+    if (dhl == nullptr) {
+        throw std::string("[DYLoad] Critical error: failed to load " + path + ": " + std::string(dlerror()));
+    }
+    this->libs.push_back(dhl);
+    dlerror();
+
+    novamain_t nmain = (novamain_t)dlsym(dhl, "NovaMain");
+    const auto err = dlerror();
+    if (err) {
+        throw std::string(err);
+    }
+    nmain();
+#endif
+}
+
+std::shared_ptr<ModLoader> ModLoader::getInstance() {
+    if (ModLoader::INSTANCE == nullptr) {
+        ModLoader::INSTANCE = std::make_shared<ModLoader>();
+    }
+
+    return ModLoader::INSTANCE;
+}
+
+} // namespace nova
