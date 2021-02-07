@@ -28,7 +28,7 @@ ModLoader::~ModLoader() {
 
 void ModLoader::loadDynamicLibrary(const std::string& path) {
 #ifdef _WIN32
-    void* dhl = LoadLibrary(path);
+    void* dhl = LoadLibrary(path.c_str());
 #else
     void* dhl = dlopen(path.c_str(), RTLD_LAZY);
 #endif
