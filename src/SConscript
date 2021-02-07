@@ -1,0 +1,11 @@
+Import("env")
+
+sources = []
+sources += env.Glob("nova/*.cpp")
+sources += env.Glob("nova/driver/*.cpp")
+sources += env.Glob("nova/input/*.cpp")
+
+env.appendSourcePath("#TermUtils/include/")
+env.appendSourcePath("#src/")
+env.appendSourcePath("#include/")
+env.Program("nova", sources)

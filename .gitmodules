@@ -1,0 +1,6 @@
+[submodule "SConsStandard"]
+	path = SConsStandard
+	url = https://github.com/lunarwatcher/SConsStandard
+[submodule "TermUtils"]
+	path = TermUtils
+	url = https://github.com/LunarWatcher/TermUtils

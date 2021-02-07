@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+args=$@
+
+export forceAnsi="yes"
+output=$(nova $args)
+if [[ "$output" =~ '^/' ]]; then
+    cd $output
+else
+    echo "Error: novacd didn't get a path. Got:"
+    echo $output
+fi
+
+
+#vim:ft=sh
