@@ -13,11 +13,7 @@ env.appendSourcePath("#TermUtils/include/")
 env.appendSourcePath("#src/")
 env.appendSourcePath("#include/")
 
-# env.compiler == 2 => MSVC or MSVC-compatible.
-# We shouldn't need -rdynamic for these.
-# clang-cl _might_ be an exception, but that's a problem
-# for the future
-if env.compiler != 2:
+if not env.isMSVC():
     env.Append(LINKFLAGS=["-rdynamic"])
     # Explicitly linking dl might be required?
     env.withLibraries("dl")
