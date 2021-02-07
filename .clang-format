@@ -72,4 +72,6 @@ ContinuationIndentWidth: 8
 AccessModifierOffset: -4
 IndentCaseLabels: false
 
+SpaceAfterCStyleCast: true
+
 # vim:ft=yaml

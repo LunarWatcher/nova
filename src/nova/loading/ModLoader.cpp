@@ -43,14 +43,14 @@ void ModLoader::loadDynamicLibrary(const std::string& path) {
     this->libs.push_back(dhl);
 
 #ifdef _WIN32
-    novamain_t nmain = (novamain_t)GetProcAddress(hGetProcIDDLL, "NovaMain");
+    novamain_t nmain = (novamain_t) GetProcAddress(dhl, "NovaMain");
     if (nmain == nullptr) {
         throw std::string("Failed to locate NovaMain");
     }
 #else
     dlerror();
 
-    novamain_t nmain = (novamain_t)dlsym(dhl, "NovaMain");
+    novamain_t nmain = (novamain_t) dlsym(dhl, "NovaMain");
     const auto err = dlerror();
     if (err) {
         throw std::string(err);
