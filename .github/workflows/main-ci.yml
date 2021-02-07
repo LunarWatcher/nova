@@ -76,7 +76,6 @@ jobs:
       run: |
         echo "CXX=${{ matrix.compiler }}" >> $GITHUB_ENV
         echo "CC=${{ matrix.ccompiler }}" >> $GITHUB_ENV
-        ${{ matrix.compiler }} --version
     # Install conan
     - name: Install conan
       run: |
