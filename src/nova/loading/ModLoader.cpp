@@ -34,7 +34,11 @@ void ModLoader::loadDynamicLibrary(const std::string& path) {
 #endif
 
     if (dhl == nullptr) {
-        throw std::string("[DYLoad] Critical error: failed to load " + path + ": " + std::string(dlerror()));
+        throw std::string("[DYLoad] Critical error: failed to load " + path
+#ifndef _WIN32
+                          + ": " + std::string(dlerror())
+#endif
+        );
     }
     this->libs.push_back(dhl);
 
