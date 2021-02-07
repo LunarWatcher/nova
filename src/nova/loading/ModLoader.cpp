@@ -12,15 +12,13 @@
 
 namespace nova {
 
-typedef void(
-#ifdef _WIN32
-        __stdcall
-#endif
-                * novamain_t)();
+typedef void (*novamain_t)();
 
 ModLoader::~ModLoader() {
     for (auto& ptr : libs) {
-#ifndef _WIN32
+#ifdef _WIN32
+        FreeLibrary((HMODULE) ptr);
+#else
         dlclose(ptr);
 #endif
     }
@@ -43,7 +41,10 @@ void ModLoader::loadDynamicLibrary(const std::string& path) {
     this->libs.push_back(dhl);
 
 #ifdef _WIN32
-    novamain_t nmain = (novamain_t) GetProcAddress(dhl, "NovaMain");
+    // An HMODULE is a void*, but the Windows API being absolute garbage prevents
+    // an implicit cast from void* to a type that's void* :facepaw:
+    // Fuck you Windows
+    novamain_t nmain = (novamain_t) GetProcAddress((HMODULE) dhl, "NovaMain");
     if (nmain == nullptr) {
         throw std::string("Failed to locate NovaMain");
     }
