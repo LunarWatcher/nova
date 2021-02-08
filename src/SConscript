@@ -15,6 +15,7 @@ env.appendSourcePath("#include/")
 
 if not env.isMSVC():
     env.Append(LINKFLAGS=["-rdynamic"])
+    env.Append(LINKFLAGS=["-Wl,-z,origin", """-Wl,-rpath=\$$ORIGIN"""])
     # Explicitly linking dl might be required?
     env.withLibraries("dl")
 

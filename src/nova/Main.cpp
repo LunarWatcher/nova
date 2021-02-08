@@ -7,6 +7,7 @@
 
 int main(int argc, char* argv[]) {
     try {
+        // nova::ModLoader::getInstance()->loadDynamicLibrary("DemoModule.so");
 
         if (argc == 1) {
             termutil::ColorPrinter printer;
