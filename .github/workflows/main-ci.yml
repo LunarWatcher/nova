@@ -87,9 +87,7 @@ jobs:
         python -m pip install scons
     - name: Build
       run: |
-        scons -j 2 debug=False
-    #- name: Build and run test
-      ## The test doesn't strictly have to be run separately, but as the test base grows,
-      ## I'd like to be able to separate test failure from build failure
-      #run: |
-        #scons test -j 2 debug=False
+        scons -j 2
+    - name: Build and run test
+      run: |
+        scons test -j 2
