@@ -35,7 +35,6 @@ env.withLibraries("novasources", append = False)
 
 # env.withConan(conanfile = os.path.join(Dir("#").abspath, "tests/conanfile.py"), remotes = [{"remote_name": "catch2", "url": "https://api.bintray.com/conan/catchorg/Catch2"}])
 
-fuglyBuildCatch2v3()
 
 if "win32" in platform:
     # Fuck Windows, fuck MSVC, and fuck both for deciding to put
@@ -54,4 +53,7 @@ tests = env.Program("tests", env.Glob("src/*.cpp"))
 
 testAlias = env.environment.Alias("test", [ tests ], tests[0].abspath)
 if "test" in BUILD_TARGETS:
+    # Don't build catch if we aren't testing
+    # This is sync, so the check has to be done manually
+    fuglyBuildCatch2v3()
     AlwaysBuild(testAlias)

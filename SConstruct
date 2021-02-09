@@ -21,7 +21,7 @@ The following targets are available:
   package                                   -- Currently not implemented
 """)
 
-env.SConscript("src/SConscript", "nova")
-env.SConscript("test/SConscript", "test")
+env.SConscript("src/SConscript", variant_dir = "nova", duplicate = 0)
+env.SConscript("test/SConscript", variant_dir = "test", duplicate = 0)
 
 env.Depends(BUILD_TARGETS, db)
