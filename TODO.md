@@ -6,6 +6,7 @@
 * [ ] Conanfile (for interface purposes; exporting headers through Conan)
 * [ ] Testing
 * [ ] API
+* [ ] Packaging
 
 ## Dynamic linking
 * [x] Linking core + flag resolution
@@ -29,3 +30,9 @@
 * [ ] Test dynamic loading and `NovaMain()`
 
 Other testing is on a per-need basis, and doesn't need to be listed here. Test when necessary and useful.
+
+## Packaging
+* [ ] .deb
+* [ ] .exe
+* [ ] generic linux (x64, fuck 32 bit)
+* [ ] Whatever macOS uses? Might also be a thing to backlog, can't test portability on this

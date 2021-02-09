@@ -4,3 +4,6 @@
 [submodule "TermUtils"]
 	path = TermUtils
 	url = https://github.com/LunarWatcher/TermUtils
+[submodule "Catch2"]
+	path = Catch2
+	url = https://github.com/catchorg/Catch2/

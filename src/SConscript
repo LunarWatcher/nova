@@ -1,7 +1,6 @@
 Import("env")
 
 sources = []
-sources += env.Glob("nova/*.cpp")
 sources += env.Glob("nova/driver/*.cpp")
 sources += env.Glob("nova/input/*.cpp")
 sources += env.Glob("nova/loading/*.cpp")
@@ -19,4 +18,10 @@ if not env.isMSVC():
     # Explicitly linking dl might be required?
     env.withLibraries("dl")
 
-env.Program("nova", sources)
+env.Library("novasources", sources)
+# This _should_ be global
+env.appendLibPath("#" + env.getBinPath())
+
+env.withLibraries("novasources", append = False)
+env.Program("nova", env.Glob("nova/*.cpp"))
+Default("nova")
