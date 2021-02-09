@@ -22,6 +22,8 @@ The following targets are available:
 """)
 
 env.SConscript("src/SConscript", variant_dir = "nova", duplicate = 0)
-env.SConscript("test/SConscript", variant_dir = "test", duplicate = 0)
+
+testEnv = env.Clone()
+testEnv.SConscript("test/SConscript", variant_dir = "test", duplicate = 0)
 
 env.Depends(BUILD_TARGETS, db)
