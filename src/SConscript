@@ -29,5 +29,5 @@ env.Library("novasources", sources)
 env.appendLibPath("#" + env.getBinPath())
 
 env.withLibraries("novasources", append = False)
-env.Program("nova", env.Glob("nova/*.cpp"))
-Default("nova")
+
+Default(env.Program("nova", env.Glob("nova/*.cpp")))
