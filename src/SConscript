@@ -1,3 +1,5 @@
+from platform import system
+
 Import("env")
 
 sources = []
@@ -14,7 +16,11 @@ env.appendSourcePath("#include/")
 
 if not env.isMSVC():
     env.Append(LINKFLAGS=["-rdynamic"])
-    env.Append(LINKFLAGS=["-Wl,-z,origin", """-Wl,-rpath=\$$ORIGIN"""])
+    if system() != "Darwin":
+        # MacOS doesn't seem to support this. Not sure how that affects rpath
+        env.Append(LINKFLAGS=["-Wl,-z,origin"])
+
+    env.Append(LINKFLAGS=[, "-Wl,-rpath=\$$ORIGIN"])
     # Explicitly linking dl might be required?
     env.withLibraries("dl")
 

@@ -15,10 +15,10 @@ env.addVariableHelp()
 
 env.addHelp("""
 The following targets are available:
-  <default, used for no target specified>   -- build Nova
-  test                                      -- runs tests, and builds Nova if necessary
-  install                                   -- Currently not implemented
-  package                                   -- Currently not implemented
+  <default, used when no target is specified>   -- build Nova
+  test                                          -- runs tests, and builds Nova if necessary
+  install                                       -- Currently not implemented
+  package                                       -- Currently not implemented
 """)
 
 env.SConscript("src/SConscript", variant_dir = "nova", duplicate = 0)
