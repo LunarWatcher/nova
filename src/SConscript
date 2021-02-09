@@ -16,11 +16,12 @@ env.appendSourcePath("#include/")
 
 if not env.isMSVC():
     env.Append(LINKFLAGS=["-rdynamic"])
-    if system() != "Darwin":
-        # MacOS doesn't seem to support this. Not sure how that affects rpath
-        env.Append(LINKFLAGS=["-Wl,-z,origin"])
-
-    env.Append(LINKFLAGS=["-Wl,-rpath=\$$ORIGIN"])
+    # if system() != "Darwin":
+        # # MacOS doesn't seem to support this. Not sure how that affects rpath
+        # env.Append(LINKFLAGS=["-Wl,-z,origin"])
+        # env.Append(LINKFLAGS=["-Wl,-rpath=\$$ORIGIN"])
+    # else:
+        # env.define("NOVA_NO_RPATH_USE_ABS")
     # Explicitly linking dl might be required?
     env.withLibraries("dl")
 
