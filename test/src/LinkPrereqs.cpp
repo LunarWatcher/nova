@@ -7,6 +7,6 @@
 TEST_CASE("Verify getExecutableLocation()", "[ExecutableLocation]") {
     std::string s;
     REQUIRE_NOTHROW(s = termutil::Filesystem::getExecutableLocation());
-
-    REQUIRE(std::regex_match(s, std::regex("([a-zA-Z]:)?[\\\\/].*/build[\\\\/]test[\\\\/]bin[\\\\/]tests(.exe)?")));
+    INFO("getExecutableLocation() didn't throw, received " + s);
+    REQUIRE(std::regex_match(s, std::regex("([a-zA-Z]:)?[\\/].*[\\/]build[\\/]test[\\/]bin[\\/]tests(.exe)?")));
 }
