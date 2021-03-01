@@ -46,24 +46,20 @@ jobs:
             os: ubuntu-20.04
             compiler: g++-10
             ccompiler: gcc-10
-            folder: gcc.posix
           - config: clang++-10-ubuntu
             os: ubuntu-20.04
             compiler: clang++-10
             ccompiler: clang-10
-            folder: clang.posix
           - config: clang++-11-macos
             os: macos-latest
             compiler: clang++
             ccompiler: clang
-            folder: clang.darwin
           - config: msvc-bundled-windows
             os: windows-latest
             compiler: cl
             ccompiler: cl
-            folder: msvc.win32
     # The OS to run on
-    runs-on: ${{ matrix.os }}
+    runs-on: "${{ matrix.os }}"
 
     steps:
     - uses: actions/checkout@v2
