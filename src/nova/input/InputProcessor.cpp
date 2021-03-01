@@ -5,10 +5,10 @@ namespace nova {
 std::shared_ptr<InputProcessor> InputProcessor::INSTANCE = nullptr;
 
 void InputProcessor::parseData(int argc, char* argv[]) {
-    int position;
+
+    // i = 0 is the binary call. We're ignoring this.
     for (int i = 1; i < argc; ++i) {
         std::string component{argv[i]};
-        rawComponents.push_back(component);
     }
 }
 

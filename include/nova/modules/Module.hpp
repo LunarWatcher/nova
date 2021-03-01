@@ -13,9 +13,12 @@ protected:
     std::vector<std::string> subcommands;
 
 public:
-    const std::string& getName() {
+    virtual ~Module() = default;
+    virtual const std::string& getName() {
         return name;
     }
+
+    virtual bool isSubcommand(const std::string& command);
 };
 
 } // namespace nova

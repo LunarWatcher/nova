@@ -37,3 +37,48 @@ Due to dynamic library mechanics, this is the easiest way to initialize everythi
 ### `ModuleTree` and registering extensions
 
 Just having stuff added to a dynamic library isn't enough
+
+### The manifest
+
+Each module is required to have a manifest. The manifest is written in JSON (largely because it's flexible and there's tools to parse it, which means I can implement generic parsing in a way that doesn't prevent modding that involves the manifest).
+
+The general syntax is:
+```json
+{
+    "dyname": "examplelib",
+    "modules": [
+        {
+            "load": "ondemand|alwaysload",
+            "moduleCommand": {
+                "name": "domagic",
+                "aliases": ["optional"]
+            },
+            "trigger": "othercommand"
+        }
+    ]
+}
+```
+
+#### Top-level reference
+
+| Key               | Type       | Meaning                                 | If optional, default value |
+| ----------------- | ---------- | --------------------------------------- | -------------------------- |
+| `dyname`          | string     | Shared library name (without extension) |                            |
+| `modules`         | list       | List of module objects                  |                            |
+
+#### Module reference:
+
+| Key               | Type       | Meaning                                 | If optional, default value | Allowed values       |
+| ----------------- | ---------- | --------------------------------------- | -------------------------- | -------------------- |
+| `load`            | string     | When to load the library                | ondemand                   | ondemand, alwaysload |
+| `moduleCommand`   | object     | Defines execution details               |                            |                      |
+| `trigger`         | string     | Used if the module is a submodule. The variable is used to determine what command structure. If this is an empty string, it'll assume it's a top-level command. Otherwise, it'll define a submodule. | "" | |
+
+An additional note on triggers:
+
+#### Module command reference:
+
+| Key               | Type       | Meaning                                 | If optional, default value |
+| ----------------- | ---------- | --------------------------------------- | -------------------------- |
+| `name`            | string     | What name is used to execute the module |                            |
+| `aliases`         | list       | Alternative names for the module        | []                         |
