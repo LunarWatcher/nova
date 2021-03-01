@@ -23,6 +23,8 @@
 * [ ] DashboardModule
     * [ ] System status
     * [ ] GitHub issue interface? API key might be the choke point here
+    * **Note** Will probably have to drop a fancy UI, but could do a renderer-based system to make it hotswapable
+* [ ] CheatSheetModule
 
 
 ## API
