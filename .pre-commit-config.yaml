@@ -3,6 +3,7 @@ repos:
     rev: v3.4.0
     hooks:
       - id: check-yaml
+        exclude: .clang-format
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/pocc/pre-commit-hooks
