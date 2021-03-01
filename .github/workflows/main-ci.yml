@@ -33,9 +33,9 @@ jobs:
       matrix:
         # Config: contains the system setup.
         config:
-          - g++-9-ubuntu
+          - g++-10-ubuntu
           - clang++-10-ubuntu
-          - clang++-10-macos
+          - clang++-11-macos
           - msvc-bundled-windows
 
         include:
