@@ -1,6 +1,3 @@
-#include <cstdlib>
-#include <iostream>
-
 #include "nova/input/InputProcessor.hpp"
 #include "nova/loading/ModLoader.hpp"
 #include "termutil/ColorPrinter.hpp"
