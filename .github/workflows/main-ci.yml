@@ -83,7 +83,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -GNinja
+        cmake .. -GNinja -DCMAKE_CXX_COMPILER=${{matrix.ccompiler}} -DCMAKE_C_COMPILER=${{matrix.compiler}}
         ninja
     - name: Build and run test
       run: |

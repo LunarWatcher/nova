@@ -5,7 +5,7 @@ add_library(novasources STATIC nova/input/InputProcessor.cpp nova/loading/ModLoa
     )
 
 add_executable(nova nova/Main.cpp)
-if (WIN32)
+if (WIN32 AND MSVC)
     set(NovaSourceDep -WHOLEARCHIVE:$<TARGET_FILE:novasources>)
 elseif(APPLE)
     set(NovaSourceDep -Wl,-all_load novasources -Wl,-noall_load)
