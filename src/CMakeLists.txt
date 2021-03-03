@@ -3,6 +3,7 @@
 add_library(novasources STATIC nova/input/InputProcessor.cpp nova/loading/ModLoader.cpp
     nova/modules/builtins/HelpModule.cpp nova/modules/Module.cpp nova/modules/ModuleTree.cpp
     )
+target_link_libraries(novasources PUBLIC dl)
 
 add_executable(nova nova/Main.cpp)
 if (WIN32 AND MSVC)
@@ -14,6 +15,3 @@ else()
 endif()
 
 target_link_libraries(nova PRIVATE "${NovaSourceDep}")
-if (NOT WIN32)
-    target_link_libraries(nova PRIVATE dl)
-endif()

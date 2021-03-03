@@ -1,5 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
+if (NOT DEFINED PROJECT_NAME)
+    set (SUBPROJECT OFF)
+    message(STATUS "Submodule loading not detected; compiling Nova")
+else()
+    set (SUBPROJECT ON)
+    message(STATUS "Submodule loading detected; disabling compilation")
+endif()
+
 project(Nova)
+
 
 if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR} )
     message( FATAL_ERROR "In-source builds not allowed. Please make a new directory and run CMake from there, or use the -B argument." )
@@ -28,7 +37,7 @@ conan_cmake_configure (REQUIRES nlohmann_json/3.9.1
                         GENERATORS cmake_find_package cmake)
 conan_cmake_autodetect (settings)
 conan_cmake_install (PATH_OR_REFERENCE . BUILD missing REMOTE conan-center SETTINGS ${settings})
-
+if (NOT SUBPROJECT)
 
 if (NOT WIN32)
     # Enable rdynamic outside windows.
@@ -47,3 +56,12 @@ include_directories("include/")
 include_directories("TermUtils/include/")
 #find_package(nlohmann_json)
 add_subdirectory(src)
+add_subdirectory(Catch2)
+add_subdirectory(test)
+
+add_custom_target(test
+    COMMAND test/tests
+    DEPENDS tests Catch2::Catch2
+    COMMENT "Runs testing")
+
+endif()

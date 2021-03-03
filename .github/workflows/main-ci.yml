@@ -87,8 +87,9 @@ jobs:
         mkdir build
         cd build
         cmake .. -GNinja -DCMAKE_CXX_COMPILER="${{matrix.compiler}}" -DCMAKE_C_COMPILER="${{matrix.ccompiler}}"
-        ninja
+        ninja -j 2 nova
         cd ..
     - name: Build and run test
       run: |
-        echo "Not implemented :)"
+        cd build
+        ninja -j 2 test
