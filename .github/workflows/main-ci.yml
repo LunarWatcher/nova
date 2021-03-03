@@ -87,6 +87,8 @@ jobs:
         mkdir build
         cd build
         cmake .. -GNinja -DCMAKE_CXX_COMPILER="${{matrix.compiler}}" -DCMAKE_C_COMPILER="${{matrix.ccompiler}}"
+        # Fucking Windows
+        ninja -j 2 novasources
         ninja -j 2 nova
         cd ..
     - name: Build and run test
