@@ -3,7 +3,7 @@
 #include "nova/modules/ModuleTree.hpp"
 
 TEST_CASE("Base test for linking", "[LinkTest]") {
-    std::string loadTarget = "build/test/bin/"
+    std::string loadTarget = "test/"
 #ifdef _WIN32
                              "libDemoModule.dll"
 #elif defined __APPLE__

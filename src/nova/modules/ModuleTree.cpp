@@ -1,6 +1,5 @@
 #include "nova/modules/ModuleTree.hpp"
 #include <memory>
-#include <sstream>
 #include <variant>
 
 namespace nova {

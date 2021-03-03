@@ -12,10 +12,7 @@ private:
     std::vector<void*> libs;
 
 public:
-    // The destructor is mainly used for cleaning up the dynamic libraries.
-    // This should be called when the program is shut down, thanks to RAII.
-    // Not sure though
-    ~ModLoader();
+    ~ModLoader() = default;
 
     /**
      * Loads a dynamic library.

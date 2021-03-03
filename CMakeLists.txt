@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
-if (NOT DEFINED PROJECT_NAME)
+
+# We disable compilation of Nova to make sure shit links properly
+# Nova has a relatively large dependency chain, but all the linking
+# is done internally in Nova.
+# ... probably gonna have to revisit what we link in to make sure there
+# aren't missing symbols. Y i k e s
+if (NOT DEFINED PROJECT_NAME OR NOVA_FORCE_BUILD_BINARIES)
     set (SUBPROJECT OFF)
     message(STATUS "Submodule loading not detected; compiling Nova")
 else()

@@ -14,16 +14,6 @@ namespace nova {
 
 typedef void (*novamain_t)();
 
-ModLoader::~ModLoader() {
-    for (auto& ptr : libs) {
-#ifdef _WIN32
-        FreeLibrary((HMODULE) ptr);
-#else
-        dlclose(ptr);
-#endif
-    }
-}
-
 void ModLoader::loadDynamicLibrary(const std::string& path) {
 #ifdef _WIN32
     void* dhl = LoadLibrary(path.c_str());

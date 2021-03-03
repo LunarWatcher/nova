@@ -4,5 +4,5 @@
 #define NOVA_EXPORT extern "C" __attribute__((visibility("default")))
 #else
 #define NOVA_EXPORT extern "C"
-#pragma warning Couldn't determine export semantics for compiler. Please open an issue, or better, a PR
+#pragma warning "Couldn't determine export semantics for compiler. Please open an issue, or better, a PR"
 #endif
