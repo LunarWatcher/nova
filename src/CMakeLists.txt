@@ -13,7 +13,7 @@ else()
     set(NovaSourceDep -Wl,--whole-archive novasources -Wl,--no-whole-archive)
 endif()
 
-target_link_libraries(nova PRIVATE ${NovaSourceDep})
+target_link_libraries(nova PRIVATE "${NovaSourceDep}")
 if (NOT WIN32)
     target_link_libraries(nova PRIVATE dl)
 endif()
