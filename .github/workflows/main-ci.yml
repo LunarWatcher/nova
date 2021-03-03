@@ -83,7 +83,6 @@ jobs:
         python -m pip install conan
         conan profile new --detect default
     - name: Build
-      if: matrix.os != 'windows-latest'
       run: |
         mkdir build
         cd build
