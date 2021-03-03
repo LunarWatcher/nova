@@ -56,8 +56,8 @@ jobs:
             ccompiler: clang
           - config: msvc-bundled-windows
             os: windows-latest
-            compiler: cl
-            ccompiler: cl
+            compiler: cl.exe
+            ccompiler: cl.exe
     # The OS to run on
     runs-on: "${{ matrix.os }}"
 
