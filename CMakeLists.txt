@@ -43,5 +43,7 @@ else()
     set (CMAKE_CXX_FLAGS_DEBUG = "/Zi")
 endif()
 
+include_directories("include/")
+include_directories("TermUtils/include/")
 #find_package(nlohmann_json)
 add_subdirectory(src)
