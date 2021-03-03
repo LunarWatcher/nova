@@ -84,7 +84,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         cd build
-        cmake .. -GNinja -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}\scripts\buildsystems\vcpkg.cmake
+        cmake .. -GNinja -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}/scripts/buildsystems/vcpkg.cmake
         ninja
     - name: Build
       if: matrix.os != 'windows-latest'
