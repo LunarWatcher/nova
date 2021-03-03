@@ -83,7 +83,7 @@ jobs:
         python -m pip install conan
         conan profile new --detect default
     - name: Fix your shit Windows
-      if: matrix.os == "windows-latest"
+      if: matrix.os == 'windows-latest'
       run: |
         C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat
     - name: Build
