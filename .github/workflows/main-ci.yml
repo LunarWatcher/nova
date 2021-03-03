@@ -86,7 +86,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -GNinja
+        cmake .. -GNinja -DCMAKE_CXX_COMPILER="${{matrix.compiler}}" -DCMAKE_C_COMPILER="${{matrix.ccompiler}}"
         ninja
         cd ..
     - name: Build and run test
