@@ -70,7 +70,7 @@ jobs:
     # Set up ninja so we don't need to make several builds for the CI.
     - name: Add msbuild to PATH
       if: matrix.os == 'windows-latest'
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: ilammy/msvc-dev-cmd@v1
     - uses: seanmiddleditch/gha-setup-ninja@master
     - name: Set env
       # Both CXX and CC needs to be set
@@ -82,17 +82,7 @@ jobs:
       run: |
         python -m pip install conan
         conan profile new --detect default
-    - name: Fix your shit Windows
-      if: matrix.os == 'windows-latest'
-      run: |
-        Invoke-CmdScript "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-        mkdir build
-        cd build
-        cmake .. -GNinja
-        ninja
-        cd ..
     - name: Build
-      if: matrix.os != 'windows-latest'
       run: |
         mkdir build
         cd build
