@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class NovaConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "scons"
+    generators = "cmake"
     default_options = {}
 
     def requirements(self):

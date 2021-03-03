@@ -1,3 +1,4 @@
+raise RuntimeError("SCons is no longer supported :(");
 import SConsStandard as EnvInit
 
 env = EnvInit.getEnvironment()

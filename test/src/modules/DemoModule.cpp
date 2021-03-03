@@ -1,3 +1,4 @@
+#include "nova/dynamic/DynHelper.hpp"
 #include "nova/modules/Module.hpp"
 #include "nova/modules/ModuleTree.hpp"
 
@@ -12,8 +13,7 @@ public:
 };
 
 } // namespace SuperAwesomeDestroyerClassSpaceShip
-#include <iostream>
-void NovaMain() {
-    std::cout << "hi";
+
+NOVA_EXPORT void NovaMain() {
     nova::ModuleTree::getInstance()->registerModule(std::make_shared<SuperAwesomeDestroyerClassSpaceShip::Destroyer>());
 }

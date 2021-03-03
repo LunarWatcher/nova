@@ -3,7 +3,7 @@
 #include "nova/modules/ModuleTree.hpp"
 
 TEST_CASE("Base test for linking", "[LinkTest]") {
-    std::string loadTarget = "build/test/bin"
+    std::string loadTarget = "build/test/bin/"
 #ifdef _WIN32
                              "libDemoModule.dll"
 #elif defined __APPLE__
@@ -12,6 +12,6 @@ TEST_CASE("Base test for linking", "[LinkTest]") {
                              "libDemoModule.so"
 #endif
             ;
-    REQUIRE_NOTHROW([&loadTarget]() { nova::ModLoader{}.loadDynamicLibrary(loadTarget); });
+    REQUIRE_NOTHROW(nova::ModLoader{}.loadDynamicLibrary(loadTarget));
     REQUIRE(nova::ModuleTree::getInstance()->getModule("destroy") != nullptr);
 }

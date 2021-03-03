@@ -50,7 +50,12 @@ env.appendSourcePath("#Catch2/src")
 env.appendSourcePath("#test/src")
 
 tests = env.Program("tests", env.Glob("src/*.cpp"))
-module = env.SharedObject("bin/libDemoModule", "src/modules/DemoModule.cpp")
+
+subEnv = env.Clone()
+subEnv.environment["LIBS"] = []
+
+
+module = subEnv.SharedLibrary("DemoModule", ["src/modules/DemoModule.cpp"])
 
 testAlias = env.environment.Alias("test", [ tests, module ], tests[0].abspath)
 if "test" in BUILD_TARGETS:

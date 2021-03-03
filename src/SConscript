@@ -16,19 +16,13 @@ env.appendSourcePath("#include/")
 
 if not env.isMSVC():
     env.Append(LINKFLAGS=["-rdynamic"])
-    # if system() != "Darwin":
-        # # MacOS doesn't seem to support this. Not sure how that affects rpath
-        # env.Append(LINKFLAGS=["-Wl,-z,origin"])
-        # env.Append(LINKFLAGS=["-Wl,-rpath=\$$ORIGIN"])
-    # else:
-        # env.define("NOVA_NO_RPATH_USE_ABS")
-    # Explicitly linking dl might be required?
+
     env.withLibraries("dl")
 
-env.Library("novasources", sources)
+# This is where shit gets tricky
+env.StaticLibrary("novasources", sources)
 # This _should_ be global
 env.appendLibPath("#" + env.getBinPath())
-
-env.withLibraries("novasources", append = False)
+env.withLibraries(["-Wl,--whole-archive", "-lnovasources", "-Wl,--nowholearchive"], append = False)
 
 Default(env.Program("nova", env.Glob("nova/*.cpp")))
