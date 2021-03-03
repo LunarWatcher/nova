@@ -85,6 +85,7 @@ jobs:
         cd build
         cmake .. -GNinja
         ninja
+        src/nova
     - name: Build and run test
       run: |
         echo "Not implemented :)"
