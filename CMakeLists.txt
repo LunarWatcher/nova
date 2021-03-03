@@ -15,7 +15,6 @@ endif()
 
 project(Nova)
 
-
 if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR} )
     message( FATAL_ERROR "In-source builds not allowed. Please make a new directory and run CMake from there, or use the -B argument." )
 endif()
@@ -54,6 +53,7 @@ if (NOT WIN32)
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -fsanitize=undefined")
     set (CMAKE_CXX_FLAGS_RELEASE "-O3")
 else()
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     # I _think_ CMAKE should be able to figure out windows flags wrt. frameworks
     set (CMAKE_CXX_FLAGS_DEBUG "/Zi")
 endif()
