@@ -83,7 +83,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -Gninja
+        cmake .. -GNinja
         ninja
     - name: Build and run test
       run: |
