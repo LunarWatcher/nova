@@ -40,7 +40,7 @@ if (NOT WIN32)
     set (CMAKE_CXX_FLAGS_RELEASE "-O3")
 else()
     # I _think_ CMAKE should be able to figure out windows flags wrt. frameworks
-    set (CMAKE_CXX_FLAGS_DEBUG = "/Zi")
+    set (CMAKE_CXX_FLAGS_DEBUG "/Zi")
 endif()
 
 include_directories("include/")
