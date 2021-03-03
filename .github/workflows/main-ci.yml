@@ -79,11 +79,19 @@ jobs:
       run: |
         python -m pip install conan
         conan profile new --detect default
+        mkdir build
+    - name: Shitdows build
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        cmake .. -GNinja -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}\scripts\buildsystems\vcpkg.cmake
+        ninja
     - name: Build
+      if: matrix.os != 'windows-latest'
       run: |
         mkdir build
         cd build
-        cmake .. -GNinja -DCMAKE_CXX_COMPILER="${{matrix.compiler}}" -DCMAKE_C_COMPILER="${{matrix.ccompiler}}"
+        cmake .. -GNinja
         ninja
     - name: Build and run test
       run: |
